@@ -160,8 +160,11 @@ class Helper
 
     private function CQCHSItemList($data)
     {
-        $list_items_string = "";
-        if (isset($data->items) && count($data->items) > 0) {
+        try {
+            $list_items_string = "";
+            if (isset($data->items) && count($data->items) > 0) {
+
+            }
             foreach ($data->items as $item) {
                 $list_items_string .= "<chrpm>$item->strItemName</chrpm>";
                 $list_items_string .= "<chrpp>$item->strItemBrand</chrpp>";
@@ -169,8 +172,12 @@ class Helper
                 $list_items_string .= "<chrjz>$item->numItemUnitPrice</chrjz>";
                 $list_items_string .= "<chrjs>$item->numItemQuantity</chrjs>";
             }
+
+            return $list_items_string;
+        } catch (Exception $e) {
+            echo $e;
         }
-        return $list_items_string;
+
     }
 
     public function getTrackingListCQCHS($data, $kdgsname)

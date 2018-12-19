@@ -106,18 +106,17 @@ if ($courier_name == '4PX') {
     );
 } else if ($courier_name == 'CQCHS') {
     //$soap_client= new SoapClient("http://www.zhonghuan.com.au:8085/API/cxf/au/recordservice?wsdl");
-
-    $stock = $Helper->CQCHSCreateString($data_raw);
-
-    $wsdl = "http://www.zhonghuan.com.au:8085/API/cxf/au/recordservice?wsdl";
-    $client = new SoapClient($wsdl, array('trace' => 1));
-
-    $request_param = array(
-        "stock" => $stock,
-    );
-
     try
     {
+        $stock = $Helper->CQCHSCreateString($data_raw);
+
+        $wsdl = "http://www.zhonghuan.com.au:8085/API/cxf/au/recordservice?wsdl";
+        $client = new SoapClient($wsdl, array('trace' => 1));
+
+        $request_param = array(
+            "stock" => $stock,
+        );
+
         $response_string = json_encode($client->getRecord($request_param));
         $response_json = json_decode($response_string);
 
