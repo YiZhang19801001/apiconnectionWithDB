@@ -23,6 +23,7 @@ class Courier
 
     public function getApiKey()
     {
+
         //create query
         $query = 'SELECT * FROM couriers WHERE code = :courier_code';
 
@@ -40,6 +41,7 @@ class Courier
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $row['api_key'];
+
     }
 
     public function getUrl()
@@ -144,7 +146,7 @@ class Courier
 
                 );
 
-                //call api to get data?
+                //call api to get data
                 $data_string = json_encode($data_arr);
 
                 $url = $this->getUrl();
